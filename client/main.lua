@@ -48,7 +48,6 @@ Citizen.CreateThread(function()
 		Citizen.Wait(10)
 		for i=1, #Config.DoorList do
 			local playerCoords = GetEntityCoords(GetPlayerPed(-1))
-			local closeDoor    = GetClosestObjectOfType(Config.DoorList[i].objCoords.x, Config.DoorList[i].objCoords.y, Config.DoorList[i].objCoords.z, 1.0, GetHashKey(Config.DoorList[i].objName), false, false, false)
 			local distance     = GetDistanceBetweenCoords(playerCoords, Config.DoorList[i].objCoords.x, Config.DoorList[i].objCoords.y, Config.DoorList[i].objCoords.z, true)
 			
 			local maxDistance = 1.25
@@ -75,6 +74,7 @@ Citizen.CreateThread(function()
 				
 				if IsControlJustReleased(0, Keys['E']) then
 					if IsCop then
+						local closeDoor    = GetClosestObjectOfType(Config.DoorList[i].objCoords.x, Config.DoorList[i].objCoords.y, Config.DoorList[i].objCoords.z, 1.0, GetHashKey(Config.DoorList[i].objName), false, false, false)
 						if Config.DoorList[i].locked then
 							FreezeEntityPosition(closeDoor, false)
 							Config.DoorList[i].locked = false
